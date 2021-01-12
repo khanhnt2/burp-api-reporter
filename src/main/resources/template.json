@@ -1,0 +1,14 @@
+{
+  "headers": [{"name": "URL", "preferredWidth": 300, "type": "REQUEST_PATH"},
+              {"name": "Method", "editable": false, "type": "REQUEST_METHOD"},
+              {"name": "Parameters", "preferredWidth": 200, "type": "REQUEST_PARAMS"},
+          	  {"name": "Description", "preferredWidth": 300},
+          	  {"name": "Recommend", "preferredWidth": 300},
+          	  {"name": "Date found", "type": "DATE_NOW"},
+          	  {"name": "Rank", "preferredWidth": 75},
+          	  {"name": "Response body", "preferredWidth": 401, "type": "RESPONSE_BODY"},
+	  		  {"name": "Host", "visitable":  false, "type": "REQUEST_HOST"},
+	  		  {"name": "Port", "visitable": false, "type": "REQUEST_PORT"},
+	  		  {"name": "Protocol", "visitable": false, "type": "REQUEST_PROTOCOL"},
+	          {"name": "Request bytes", "visitable": false, "type": "REQUEST_BYTES"}]
+}
