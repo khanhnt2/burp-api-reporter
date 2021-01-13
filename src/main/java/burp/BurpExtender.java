@@ -74,8 +74,8 @@ public class BurpExtender implements IBurpExtender, ITab, IContextMenuFactory, I
                 GridBagConstraints constraints = new GridBagConstraints();
                 JComboBox<ProxyListener.RequestColor> cbbColors = new JComboBox<>();
                 JButton exportButton = new JButton("Export to Xlsx");
-                JButton saveButton = new JButton("Save report");
-                JButton importButton = new JButton("Import report");
+                JButton saveButton = new JButton("Save table");
+                JButton importButton = new JButton("Import table");
 
                 cbUseMakeHttpRequest.addItemListener(new ItemListener() {
                     @Override
