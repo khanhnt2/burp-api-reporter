@@ -44,4 +44,4 @@ This extension will help you remember APIs you tested in a long time ago, now yo
   
  ## Report bug, contribution
 
-I always welcome that. Feel fee to report bug or pull request to this Github repository.
+I always welcome that. Feel free to report bug or pull request to this Github repository.
