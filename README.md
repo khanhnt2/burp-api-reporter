@@ -4,6 +4,10 @@ A Burp Suite's extension to monitor, save and report tested APIs.
 
 This extension will help you remember APIs you tested in a long time ago, now you have to test them again and export to report.
 
+## Overview
+
+![Overview](images/overview.gif)
+
 ## Features
 
 - Custom column in table by predefined json file. The column is used to display request information (URL, method, parameters,...)
