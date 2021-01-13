@@ -168,7 +168,18 @@ public class RequestTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int row, int column) {
+        if (headers.get(column).getName().equals(ORDER_SYMBOL)) {
+            return Integer.valueOf(values.get(row).get(headers.get(column).getName()));
+        }
         return values.get(row).get(headers.get(column).getName());
+    }
+
+    @Override
+    public Class getColumnClass(int columnIndex) {
+        if (headers.get(columnIndex).getName().equals(ORDER_SYMBOL)) {
+            return Integer.class;
+        }
+        return String.class;
     }
 
     @Override

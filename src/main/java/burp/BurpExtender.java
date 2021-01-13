@@ -314,7 +314,7 @@ public class BurpExtender implements IBurpExtender, ITab, IContextMenuFactory, I
                     public void actionPerformed(ActionEvent e) {
                         List<Map<String, String>> rows = new ArrayList<>();
                         for (int i: table.getSelectedRows()) {
-                            rows.add(tableModel.getRow(i));
+                            rows.add(tableModel.getRow(table.convertRowIndexToModel(i)));
                         }
                         for (Map<String, String> row: rows) {
                             // TODO: remove highlight deleted row
@@ -326,10 +326,11 @@ public class BurpExtender implements IBurpExtender, ITab, IContextMenuFactory, I
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         for (int i : table.getSelectedRows()) {
-                            String host = tableModel.getRow(i).get("Host");
-                            String port = tableModel.getRow(i).get("Port");
-                            String protocol = tableModel.getRow(i).get("Protocol");
-                            String requestString = tableModel.getRow(i).get("Request bytes");
+                            int index = table.convertRowIndexToModel(i);
+                            String host = tableModel.getRow(index).get("Host");
+                            String port = tableModel.getRow(index).get("Port");
+                            String protocol = tableModel.getRow(index).get("Protocol");
+                            String requestString = tableModel.getRow(index).get("Request bytes");
 
                             if (host != null && port != null && protocol != null && requestString != null) {
                                 boolean isHttps = protocol.equals("https");
