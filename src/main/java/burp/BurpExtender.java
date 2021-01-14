@@ -220,6 +220,7 @@ public class BurpExtender implements IBurpExtender, ITab, IContextMenuFactory, I
                                 // Create header
                                 Row header = sheet.createRow(0);
                                 for (int i = 0; i < tableModel.getColumnCount(); i++) {
+                                    if (!tableModel.isColumnVisitable(i)) continue;
                                     Cell cell = header.createCell(i);
                                     cell.setCellValue(tableModel.getColumnName(i));
                                 }
@@ -227,6 +228,7 @@ public class BurpExtender implements IBurpExtender, ITab, IContextMenuFactory, I
                                 for (int i = 0; i < tableModel.getRowCount(); i++) {
                                     Row row = sheet.createRow(1 + i);
                                     for (int col = 0; col < tableModel.getColumnCount(); col++) {
+                                        if (!tableModel.isColumnVisitable(i)) continue;
                                         Cell cell = row.createCell(col);
                                         String value = tableModel.getValueAt(i, col).toString();
                                         if (value.length() > 32767) {
