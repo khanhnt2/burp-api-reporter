@@ -228,7 +228,7 @@ public class BurpExtender implements IBurpExtender, ITab, IContextMenuFactory, I
                                 for (int i = 0; i < tableModel.getRowCount(); i++) {
                                     Row row = sheet.createRow(1 + i);
                                     for (int col = 0; col < tableModel.getColumnCount(); col++) {
-                                        if (!tableModel.isColumnVisitable(i)) continue;
+                                        if (!tableModel.isColumnVisitable(col)) continue;
                                         Cell cell = row.createCell(col);
                                         String value = tableModel.getValueAt(i, col).toString();
                                         if (value.length() > 32767) {

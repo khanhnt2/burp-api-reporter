@@ -6,8 +6,12 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.Locale;
 import java.util.logging.Logger;
 
 public class TypeInformation {
@@ -110,8 +114,18 @@ public class TypeInformation {
     private String REQUEST_PARAMS() {
 //        logger.info(String.valueOf(this.req.getBodyOffset()) + " - " + this.message.getRequest().length);
         if (this.url.getQuery() == null) {
-            String request = new String(this.message.getRequest());
-            return request.substring(this.req.getBodyOffset());
+            byte[] bodyBytes = Arrays.copyOfRange(this.message.getRequest(), this.req.getBodyOffset(), this.message.getRequest().length);
+            Charset charset = StandardCharsets.US_ASCII;
+            for (String header: this.req.getHeaders()) {
+                if (header.toLowerCase().startsWith("content-type:")) {
+                    if (header.toLowerCase().contains("charset=utf-8")) {
+                        charset = StandardCharsets.UTF_8;
+                    }
+                    break;
+                }
+            }
+            String request = new String(bodyBytes, charset);
+            return request;
         }
 
         return this.url.getQuery();
@@ -124,8 +138,18 @@ public class TypeInformation {
         if (this.res.getBodyOffset() == this.message.getResponse().length)
             return "";
 
-        String response = new String(this.message.getResponse());
-        return response.substring(this.res.getBodyOffset());
+        byte[] bodyBytes = Arrays.copyOfRange(this.message.getResponse(), this.res.getBodyOffset(), this.message.getResponse().length);
+        Charset charset = StandardCharsets.US_ASCII;
+        for (String header: this.res.getHeaders()) {
+            if (header.toLowerCase().startsWith("content-type:")) {
+                if (header.toLowerCase().contains("charset=utf-8")) {
+                    charset = StandardCharsets.UTF_8;
+                }
+                break;
+            }
+        }
+        String response = new String(bodyBytes, charset);
+        return response;
     }
 }
 
